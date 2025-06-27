@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <script 
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+  </script>
+  
+  <meta charset="UTF-8" />
+  <title>خريطة العقارات - Leaflet</title>
+
+  <!-- إضافة Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet/dist/leaflet.css"
+  />
+
+  <style>
+    #map {
+      height: 500px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h3>مواقع العقارات على الخريطة</h3>
+  <div id="map"></div>
+
+  <!-- إضافة Leaflet JS -->
+  <script
+    src="https://unpkg.com/leaflet/dist/leaflet.js">
+  </script>
+
+  <script>
+    // إنشاء الخريطة وتحديد إحداثيات المركز
+    const map = L.map('map').setView([24.7136, 46.6753], 10); // مثال: الرياض
+
+    // إضافة طبقة OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // بيانات العقارات
+    const properties = [
+      { name: "فيلا فاخرة", lat: 24.774265, lng: 46.738586 },
+      { name: "شقة مفروشة", lat: 24.713552, lng: 46.675296 },
+      { name: "أرض للبيع", lat: 24.726788, lng: 46.710112 }
+    ];
+
+    // إضافة Marker لكل عقار
+    properties.forEach(property => {
+      L.marker([property.lat, property.lng])
+        .addTo(map)
+        .bindPopup(`<b>${property.name}</b>`)
+        .openPopup();
+    });
+  </script>
+  <script 
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+  </script>
+</body>
+</html>
